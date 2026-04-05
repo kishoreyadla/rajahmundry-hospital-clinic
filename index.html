@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJH Clinic | Top Multispeciality Hospital in Rajahmundry</title>
+    <meta name="description" content="Experience world-class healthcare at RJH Clinic in Rajahmundry. Advanced Cardiology, Orthopaedics, and Emergency care.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;810&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy: #0a1628;
+            --teal: #0d9488;
+            --gold: #c8a060;
+            --white: #ffffff;
+            --light-grey: #f8fafc;
+            --cream: #fffdf9;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--white); overflow-x: hidden; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .btn { display: inline-block; padding: 0.8rem 2.2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: var(--transition); border: none; text-align: center; }
+        .btn-teal { background: var(--teal); color: var(--white); }
+        .btn-teal:hover { background: #0b7a70; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(13, 148, 136, 0.2); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--navy); }
+
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; transition: var(--transition); }
+        nav.scrolled { background: rgba(255, 255, 255, 0.98); padding: 0.8rem 0; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+        nav.scrolled .nav-link, nav.scrolled .logo h1 { color: var(--navy); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { color: var(--white); font-size: 1.8rem; font-weight: 800; }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-link { color: var(--white); font-weight: 500; font-size: 0.95rem; position: relative; }
+        .nav-link::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--teal); transition:var(--transition); }
+        .nav-link:hover::after { width:100%; }
+        
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002; }
+        .mobile-toggle span { width: 25px; height: 2px; background: var(--white); transition: var(--transition); }
+        nav.scrolled .mobile-toggle span { background: var(--navy); }
+
+        /* Media Queries for Mobile Nav */
+        @media (max-width: 900px) {
+            .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: var(--white); flex-direction: column; justify-content: center; align-items: center; transition: 0.5s ease-in-out; box-shadow: -10px 0 50px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .nav-link { color: var(--navy); font-size: 1.4rem; font-weight: 700; margin: 1.5rem 0; }
+            .mobile-toggle { display: flex; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: var(--navy); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); background: var(--navy); }
+        }
+
+        /* Hero Section */
+        .hero { height: 100vh; background: linear-gradient(rgba(10, 22, 40, 0.75), rgba(10, 22, 40, 0.75)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=85'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; color: var(--white); text-align: center; position: relative; }
+        .hero-content { max-width: 900px; margin: 0 auto; padding: 0 1rem; }
+        .hero h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; line-height: 1.1; font-weight: 800; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero-btns { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        
+        .hero-stats { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .stat-card { background: var(--white); padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); color: var(--navy); text-align: center; }
+        .stat-card h3 { font-size: 2.5rem; color: var(--teal); margin-bottom: 0.5rem; }
+        .stat-card p { font-size: 0.9rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; }
+
+        /* Marquee */
+        .marquee-section { background: var(--navy); padding: 1.2rem 0; margin-top: 100px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
+        .marquee-item { display: inline-block; color: var(--gold); font-weight: 600; text-transform: uppercase; margin: 0 3rem; font-size: 0.9rem; letter-spacing: 1.5px; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Section Global */
+        .section-padding { padding: 10rem 0; }
+        .section-header { text-align: center; margin-bottom: 5rem; padding: 0 1rem; }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--navy); margin-bottom: 1.5rem; }
+        .section-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--white); padding: 3.5rem 2rem; border-radius: 30px; border: 1px solid #f1f5f9; transition: var(--transition); text-align: center; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--teal); box-shadow: 0 15px 40px rgba(13,148,136,0.06); }
+        .service-icon { font-size: 3.5rem; margin-bottom: 1.5rem; display: block; }
+        .service-card h3 { font-size: 1.4rem; color: var(--navy); margin-bottom: 1rem; }
+        .service-card p { font-size: 0.95rem; color: var(--text-light); }
+
+        /* Why Choose Us Split Layout */
+        .why-choose { background: var(--light-grey); }
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .feature-tile { background: var(--white); padding: 1.5rem; border-radius: 20px; display: flex; align-items: center; gap: 1rem; font-weight: 600; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
+
+        /* Clinic Directory Grid */
+        .clinic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+        .clinic-card { background: var(--white); padding: 2.5rem; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); position: relative; border-top: 6px solid transparent; transition: var(--transition); }
+        .clinic-card:hover { border-top-color: var(--teal); transform: translateY(-8px); box-shadow: 0 25px 60px rgba(10,22,40,0.1); }
+        .badge { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--gold); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1.2rem; border-radius: 100px; text-transform: uppercase; }
+        .rating { color: #fbbf24; font-weight: 800; font-size: 1rem; margin-bottom: 0.6rem; display: block; }
+        .clinic-tag { color: var(--teal); font-weight: 700; font-size: 0.9rem; margin-bottom: 1.2rem; display: block; }
+        .clinic-info { color: var(--text-light); font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.8rem; }
+        .clinic-actions { display: flex; gap: 1rem; margin-top: 2rem; }
+        .action-link { flex: 1; padding: 0.85rem; text-align: center; border-radius: 14px; font-weight: 700; font-size: 0.9rem; transition: var(--transition); }
+        .btn-gray { background: #f1f5f9; color: var(--navy); }
+        .btn-teal-small { background: var(--teal); color: var(--white); }
+
+        /* Specialist Grid */
+        .doctor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3rem; }
+        .doctor-card { text-align: center; }
+        .doctor-img-box { position: relative; border-radius: 30px; overflow: hidden; margin-bottom: 1.5rem; aspect-ratio: 4/5; }
+        .doctor-img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .doctor-card:hover .doctor-img { transform: scale(1.1); }
+        .doctor-card h3 { font-size: 1.6rem; color: var(--navy); margin-bottom: 0.4rem; }
+        .doctor-card p { color: var(--teal); font-weight: 700; margin-bottom: 0.6rem; }
+        .exp { font-size: 0.9rem; background: #f1f5f9; padding: 0.4rem 1.2rem; border-radius: 50px; display: inline-block; color: var(--text-light); }
+
+        /* Testimonials Section */
+        .testimonials { background: var(--cream); }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .testimonial-card { background: var(--white); padding: 4.5rem 3.5rem; border-radius: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.02); position: relative; }
+        .quote-icon { position: absolute; top: 1.5rem; left: 2rem; font-size: 7rem; color: var(--teal); opacity: 0.08; font-family: serif; pointer-events: none; }
+        .t-text { font-style: italic; font-size: 1.2rem; margin-bottom: 3rem; position: relative; color: var(--text-dark); line-height: 1.8; }
+        .t-author { display: flex; align-items: center; gap: 1rem; }
+        .t-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--light-grey); color: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; }
+        .t-meta h4 { font-size: 1.25rem; color: var(--navy); }
+        .t-meta span { font-size: 0.9rem; color: var(--text-light); }
+
+        /* Booking Section Form */
+        .booking-section { background: var(--navy); color: var(--white); }
+        .booking-container { display: grid; grid-template-columns: 1fr 1.6fr; gap: 7rem; }
+        .contact-details h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 2.5rem; }
+        .contact-item { display: flex; gap: 1.5rem; margin-bottom: 3rem; }
+        .contact-icon-box { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 18px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.8rem; }
+        
+        .form-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 4.5rem; border-radius: 48px; backdrop-filter: blur(15px); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+        .form-group label { display: block; margin-bottom: 1rem; font-size: 1rem; font-weight: 500; opacity: 0.8; }
+        .form-group input, .form-group select { width: 100%; padding: 1.4rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; color: var(--white); font-size: 1rem; transition: var(--transition); }
+        .form-group input:focus { outline: none; border-color: var(--teal); background: rgba(255,255,255,0.08); }
+
+        /* Footer Implementation */
+        footer { background: #040911; color: var(--white); padding: 9rem 0 3.5rem; }
+        .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 5rem; margin-bottom: 7rem; }
+        .footer-brand h2 { font-size: 2.2rem; margin-bottom: 2rem; }
+        .footer-brand p { color: rgba(255,255,255,0.6); max-width: 320px; font-size: 1.05rem; }
+        .footer-links h4 { color: var(--gold); font-size: 1.25rem; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links li { margin-bottom: 1.2rem; }
+        .footer-links a { color: rgba(255,255,255,0.5); font-size: 1rem; }
+        .footer-links a:hover { color: var(--white); transform: translateX(10px); display: inline-block; }
+
+        /* Floating Contact Button (Mobile Friendly) */
+        .wa-float { position: fixed; bottom: 35px; right: 35px; width: 68px; height: 68px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(37,211,102,0.5); z-index: 1000; transition: var(--transition); }
+        .wa-float:hover { transform: scale(1.1); box-shadow: 0 15px 50px rgba(37,211,102,0.6); }
+
+        /* Reveal Animation Framework */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Tablet & Mobile Adjustments */
+        @media (max-width: 900px) {
+            .hero-stats { grid-template-columns: 1fr; bottom: -280px; width: 100%; padding: 0 2rem; }
+            .marquee-section { margin-top: 320px; }
+            .split-layout, .booking-container { grid-template-columns: 1fr; text-align: center; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .form-card { padding: 3rem 2rem; border-radius: 32px; }
+            .contact-item { flex-direction: column; align-items: center; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+            .section-padding { padding: 7rem 0; }
+        }
+
+        @media (max-width: 500px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { margin: 0 auto; }
+            .wa-float { width: 56px; height: 56px; bottom: 20px; right: 20px; }
+            .hero-btns .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <h1>RJH<span>Clinic</span></h1>
+            </a>
+            
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#services" class="nav-link">Medical Services</a></li>
+                <li><a href="#clinics" class="nav-link">Top Hospitals</a></li>
+                <li><a href="#doctors" class="nav-link">Our Specialists</a></li>
+                <li><a href="#about" class="nav-link">About Clinic</a></li>
+                <li><a href="#contact" class="nav-link">Book Now</a></li>
+            </ul>
+
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <a href="#contact" class="btn btn-teal nav-cta-desktop" style="padding: 0.6rem 1.8rem; font-size: 0.9rem;">Book Now</a>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2 class="reveal">World-Class Healthcare, Right Here in Rajahmundry</h2>
+            <p class="reveal">Pioneering clinical excellence with a patient-first approach. We provide comprehensive medical solutions for your entire family, backed by cutting-edge technology.</p>
+            <div class="reveal hero-btns">
+                <a href="#contact" class="btn btn-teal">Secure Appointment</a>
+                <a href="#services" class="btn btn-outline">Explore Specialities</a>
+            </div>
+        </div>
+
+        <div class="hero-stats reveal">
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Critical Care Response</p>
+            </div>
+            <div class="stat-card">
+                <h3>50+</h3>
+                <p>Medical Specialists</p>
+            </div>
+            <div class="stat-card">
+                <h3>NABH</h3>
+                <p>Accredited Safety Standards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticker Marquee Ribbon -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span class="marquee-item">Cardiology • హృదయ చికిత్స</span>
+            <span class="marquee-item">Orthopaedics • ఎముకల విభాగం</span>
+            <span class="marquee-item">Neurology • నరాల విభాగం</span>
+            <span class="marquee-item">Gynaecology • స్త్రీల విభాగం</span>
+            <span class="marquee-item">Paediatrics • శిశు విభాగం</span>
+            <span class="marquee-item">Gastroenterology • గ్యాస్ట్రో విభాగం</span>
+            <span class="marquee-item">Oncology • క్యాన్సర్ చికిత్స</span>
+            <span class="marquee-item">Dermatology • చర్మవ్యాధి విభాగం</span>
+            <!-- Continuous Loop Duplicate -->
+            <span class="marquee-item">Cardiology • హృదయ చికిత్స</span>
+            <span class="marquee-item">Orthopaedics • ఎముకల విభాగం</span>
+            <span class="marquee-item">Neurology • నరాల విభాగం</span>
+            <span class="marquee-item">Gynaecology • స్త્રીల విభాగం</span>
+            <span class="marquee-item">Paediatrics • శిశు విభాగం</span>
+            <span class="marquee-item">Gastroenterology • గ్యాస్ట్రో విభాగం</span>
+            <span class="marquee-item">Oncology • క్యాన్సర్ చికిత్స</span>
+            <span class="marquee-item">Dermatology • చర్మవ్యాధి విభాగం</span>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Expert Medical Services</h2>
+                <p>Dedicated to delivering high-end therapeutic care with the most advanced medical infrastructure in the Godavari region.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <span class="service-icon">🚑</span>
+                    <h3>Emergency Unit</h3>
+                    <p>Immediate life-saving treatments with advanced life support ambulance services.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🫀</span>
+                    <h3>Cardiac Care</h3>
+                    <p>Modern diagnostic labs and restorative heart surgery by elite cardiologists.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🦴</span>
+                    <h3>Orthopaedics</h3>
+                    <p>Precise joint replacement and spinal care with high-end rehabilitation units.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🤰</span>
+                    <h3>Women's Health</h3>
+                    <p>Safe maternity care, high-risk pregnancy management, and fertility solutions.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">👶</span>
+                    <h3>Child Care</h3>
+                    <p>Advanced neonatal ICU (NICU) and specialised paediatric surgical expertise.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🩺</span>
+                    <h3>Gastroenterology</h3>
+                    <p>Pioneering endoscopic and non-invasive digestive system treatments.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🧠</span>
+                    <h3>Neurology Unit</h3>
+                    <p>Advanced management for stroke, epilepsy, and neuro-spine conditions.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="service-icon">🧴</span>
+                    <h3>Dermatology</h3>
+                    <p>Clinical and aesthetic skin treatments using state-of-the-art laser technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section / Why Choose Us -->
+    <section id="about" class="section-padding why-choose">
+        <div class="container split-layout">
+            <div class="reveal">
+                <h2>Leader in Clinical Excellence</h2>
+                <p style="margin-top: 1.5rem; font-size: 1.15rem; color: var(--text-light); line-height: 1.8;">
+                    For over two decades, we have been the heartbeat of healthcare in Rajahmundry. Our legacy of trust is built on medical precision, compassionate care, and local commitment.
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-tile"><span>✅</span> 24/7 Trauma Care</div>
+                    <div class="feature-tile"><span>✅</span> NABH Certified</div>
+                    <div class="feature-tile"><span>✅</span> Modernised ICUs</div>
+                    <div class="feature-tile"><span>✅</span> Transparent Fees</div>
+                </div>
+                <div style="margin-top: 3.5rem;">
+                    <a href="#contact" class="btn btn-teal">Meet Our Council</a>
+                </div>
+            </div>
+            <div class="reveal">
+                <div style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80" alt="Hospital Hub" 
+                         style="width: 100%; border-radius: 50px; box-shadow: 0 40px 80px rgba(0,0,0,0.12);" loading="lazy">
+                    <div style="position: absolute; bottom: -30px; left: -30px; background: var(--teal); padding: 3rem; border-radius: 40px; color: var(--white); box-shadow: 0 25px 50px rgba(13,148,136,0.4);">
+                        <h4 style="font-size: 3rem; line-height: 1; font-family: 'Playfair Display';">25+</h4>
+                        <p style="font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; margin-top: 0.5rem;">Clinical Years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinic Directory Section -->
+    <section id="clinics" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Top-Rated Local Hospitals</h2>
+                <p>Collaborating with the finest multispeciality institutions in the city to provide you with a world-class choices near you.</p>
+            </div>
+
+            <div class="clinic-grid">
+                <!-- Clinic 1 -->
+                <div class="clinic-card reveal">
+                    <span class="badge">Most Trusted</span>
+                    <span class="rating">⭐ 4.9 (8k+ patients)</span>
+                    <h3>Kify Hospital</h3>
+                    <span class="clinic-tag">Multispeciality | Internal Medicine</span>
+                    <p class="clinic-info">📍 Meduri Street, Danavai Peta, RJY</p>
+                    <p class="clinic-info">📞 +91 85000 23456</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+918500023456" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 2 -->
+                <div class="clinic-card reveal">
+                    <span class="rating">⭐ 4.8 (6k+ patients)</span>
+                    <h3>SAI Hospitals</h3>
+                    <span class="clinic-tag">Multispeciality | Surgical Unit</span>
+                    <p class="clinic-info">📍 Middle Street, Aryapuram, RJY</p>
+                    <p class="clinic-info">📞 +91 83329 87911</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+918332987911" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 3 -->
+                <div class="clinic-card reveal">
+                    <span class="rating">⭐ 4.9 (3k+ patients)</span>
+                    <h3>Sri Ganga Emergency</h3>
+                    <span class="clinic-tag">24/7 Trauma | Paediatrics</span>
+                    <p class="clinic-info">📍 Danavai Peta, Rajahmundry</p>
+                    <p class="clinic-info">📞 +91 82828 98918</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+918282898918" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 4 -->
+                <div class="clinic-card reveal">
+                    <span class="rating">⭐ 4.9 (1.2k patients)</span>
+                    <h3>Smart Emergency</h3>
+                    <span class="clinic-tag">Elite Emergency Services</span>
+                    <p class="clinic-info">📍 Katari Gardens, Rajahmundry</p>
+                    <p class="clinic-info">📞 +91 883 244 6666</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+918832446666" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 5 -->
+                <div class="clinic-card reveal">
+                    <span class="rating">⭐ 4.8 (1,500 patients)</span>
+                    <h3>GVS Hospital</h3>
+                    <span class="clinic-tag">Pioneering Gastroenterology</span>
+                    <p class="clinic-info">📍 Gandhipuram, Rajahmundry</p>
+                    <p class="clinic-info">📞 +91 96662 26668</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+919666226668" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 6 -->
+                <div class="clinic-card reveal">
+                    <span class="badge">Perfect Service</span>
+                    <span class="rating">⭐ 5.0 (450+ patients)</span>
+                    <h3>Anusha Hospital</h3>
+                    <span class="clinic-tag">Family Medicine & Gynaec</span>
+                    <p class="clinic-info">📍 Main Road, Danavai Peta, RJY</p>
+                    <p class="clinic-info">📞 +91 85220 08108</p>
+                    <div class="clinic-actions">
+                        <a href="tel:+918522008108" class="action-link btn-gray">Call Facility</a>
+                        <a href="#" class="action-link btn-teal-small">Get Route</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Specialists -->
+    <section id="doctors" class="section-padding" style="background: var(--light-grey);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Council of Specialists</h2>
+                <p>Bringing domestic and international clinical expertise to the Godavari community.</p>
+            </div>
+
+            <div class="doctor-grid">
+                <!-- Doc 1 -->
+                <div class="doctor-card reveal">
+                    <div class="doctor-img-box">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=450&q=80" alt="Specialist" class="doctor-img">
+                    </div>
+                    <h3>Dr. Arun Kumar</h3>
+                    <p>Chief Cardiology Council</p>
+                    <span class="exp">15+ Years Clinical Exp</span>
+                </div>
+                <!-- Doc 2 -->
+                <div class="doctor-card reveal">
+                    <div class="doctor-img-box">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=450&q=80" alt="Specialist" class="doctor-img">
+                    </div>
+                    <h3>Dr. Sravani Devi</h3>
+                    <p>HOD Gynaecology & Obst</p>
+                    <span class="exp">12+ Years Clinical Exp</span>
+                </div>
+                <!-- Doc 3 -->
+                <div class="doctor-card reveal">
+                    <div class="doctor-img-box">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=450&q=80" alt="Specialist" class="doctor-img">
+                    </div>
+                    <h3>Dr. Rajesh Varma</h3>
+                    <p>Senior Orthopaedic Council</p>
+                    <span class="exp">18+ Years Clinical Exp</span>
+                </div>
+                <!-- Doc 4 -->
+                <div class="doctor-card reveal">
+                    <div class="doctor-img-box">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=450&q=80" alt="Specialist" class="doctor-img">
+                    </div>
+                    <h3>Dr. Kiran Sai</h3>
+                    <p>Pioneering Neurologist</p>
+                    <span class="exp">10+ Years Clinical Exp</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding testimonials">
+        <div class="container">
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card reveal">
+                    <span class="quote-icon">“</span>
+                    <p class="t-text">"The emergency cardiac care I received was truly world-class. The facilities and the attention of the doctors were beyond Compare. Proud to have such a clinic in Rajahmundry!"</p>
+                    <div class="t-author">
+                        <div class="t-avatar">NV</div>
+                        <div class="t-meta"><h4>Navneet V.</h4><span>Rajahmundry, AP</span></div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card reveal">
+                    <span class="quote-icon">“</span>
+                    <p class="t-text">"Advanced paediatric care that our child needed was handled with extreme care. The nurses and staff made us feel completely safe and informed."</p>
+                    <div class="t-author">
+                        <div class="t-avatar">ML</div>
+                        <div class="t-meta"><h4>Lakshmi M.</h4><span>Kakinada, AP</span></div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card reveal">
+                    <span class="quote-icon">“</span>
+                    <p class="t-text">"The orthopaedic department's restorative surgery gave me a new lease on life. Modern protocols and transparent pricing make them the best choice."</p>
+                    <div class="t-author">
+                        <div class="t-avatar">SR</div>
+                        <div class="t-meta"><h4>Sandeep Rao</h4><span>Rajahmundry, AP</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Booking Section -->
+    <section id="contact" class="section-padding booking-section">
+        <div class="container booking-container">
+            <div class="contact-details reveal">
+                <h2>Secure Your Clinical Appointment</h2>
+                <p style="margin-bottom: 4rem; color: rgba(255,255,255,0.6); font-size: 1.1rem;">Elite medical care is just a form away. For immediate emergencies, please use our 24/7 hotline numbers.</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon-box">📍</div>
+                    <div><h4>Head Facility Address</h4><p>Danavai Peta, Main Road, Rajamahendravaram, AP 533103</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon-box">📞</div>
+                    <div><h4>Emergency Hotlines</h4><p>+91 85000 23456 / 23457</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon-box">✉️</div>
+                    <div><h4>Council Email</h4><p>care@rjhclinic.com</p></div>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <div class="form-card">
+                    <form id="appointmentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Patient Full Name</label>
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Direct Phone Number</label>
+                                <input type="tel" placeholder="Mobile Number" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Selective Department</label>
+                                <select required>
+                                    <option value="">Choose Speciality</option>
+                                    <option>Cardiology</option>
+                                    <option>Orthopaedics</option>
+                                    <option>Gynaecology</option>
+                                    <option>Neurology</option>
+                                    <option>Paediatrics</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Requested Date</label>
+                                <input type="date" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-teal" style="width: 100%; padding: 1.4rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Confirm My Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Implementation -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2>RJH<span>Clinic</span></h2>
+                <p>The standard of medical excellence in Andhra Pradesh. Providing comprehensive, world-class clinical solutions for every life journey.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Medical Units</h4>
+                <ul>
+                    <li><a href="#">Cardiology Unit</a></li>
+                    <li><a href="#">Orthopaedic Hub</a></li>
+                    <li><a href="#">Neuro Council</a></li>
+                    <li><a href="#">Maternity Care</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Access</h4>
+                <ul>
+                    <li><a href="#about">About Legacy</a></li>
+                    <li><a href="#clinics">Find Hospitals</a></li>
+                    <li><a href="#doctors">Our Council</a></li>
+                    <li><a href="#contact">Contact Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Safety</h4>
+                <ul>
+                    <li><a href="#">Patient Privacy</a></li>
+                    <li><a href="#">Safety Protocols</a></li>
+                    <li><a href="#">Terms & Rights</a></li>
+                    <li><a href="#">NABH Standards</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="border-top:1px solid rgba(255,255,255,0.05); padding-top:3.5rem; text-align:center; color:rgba(255,255,255,0.25); font-size:0.9rem; letter-spacing: 1px;">
+            &copy; 2026 RJH Multispeciality Clinic Group. All Rights Reserved. Empowering Lives through Medical Science.
+        </div>
+    </footer>
+
+    <!-- Mobile-Persistent WhatsApp Floating Button -->
+    <a href="https://wa.me/918500023456" class="wa-float" target="_blank" aria-label="WhatsApp Engagement">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.815-.311.037-.714.061-1.15-.078-.26-.083-.591-.186-1.026-.375-1.849-.806-3.037-2.735-3.13-2.859-.093-.124-.755-.992-.755-1.933 0-.941.481-1.401.652-1.587.171-.186.376-.233.501-.233.124 0 .248 0 .356.006.112.006.261-.044.41.311.149.354.512 1.246.557 1.339.045.093.075.201.012.326-.062.124-.093.201-.186.311-.093.111-.196.248-.28.335-.093.093-.191.191-.081.381.11.19.49.802 1.05 1.302.722.646 1.33.847 1.517.941.186.093.296.077.405-.044.111-.121.481-.557.608-.744.127-.187.254-.158.428-.093.174.065 1.104.52 1.29.613.186.093.311.14.357.217.046.077.046.45-.098.855z"/>
+            <path d="M12.036 0C5.39 0 0 5.39 0 12.036c0 2.126.556 4.197 1.612 6.01L0 24l6.101-1.6c1.81 1.01 3.863 1.54 5.929 1.54 6.646 0 12.036-5.39 12.036-12.036C24.036 5.39 18.646 0 12.036 0zM12.036 21.936c-1.89 0-3.743-.51-5.356-1.472l-.384-.23-3.6 1.056 1.074-3.51-.264-.42c-1.026-1.632-1.571-3.51-1.571-5.46 0-5.472 4.451-9.924 9.924-9.924 5.474 0 9.924 4.451 9.924 9.924 0 5.474-4.45 9.924-9.924 9.924z"/>
+        </svg>
+    </a>
+
+    <!-- Application Scripting -->
+    <script>
+        // Sticky Navigation Controller
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
+
+        // Mobile Menu Logic
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal Controller
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Form Submission Handler
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your Clinical Appointment Request has been sent successfully. Our council will contact you shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
